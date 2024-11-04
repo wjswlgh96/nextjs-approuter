@@ -10,8 +10,6 @@ export default function Searchbar() {
 
   const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-
-    console.log("on Submit!!");
   };
 
   return (
