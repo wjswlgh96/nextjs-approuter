@@ -1,7 +1,6 @@
 import BookItem from "@/components/book-item";
 import styles from "./page.module.css";
 import { BookData } from "@/types";
-import { delay } from "@/utils/delay";
 import { Suspense } from "react";
 
 import BookListSkeleton from "@/components/skeleton/book-list-skeletion";
@@ -14,7 +13,6 @@ import BookListSkeleton from "@/components/skeleton/book-list-skeletion";
 // 4. error
 
 async function AllBooks() {
-  await delay(1500);
   const response = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/book`, {
     cache: "force-cache",
   });
@@ -33,7 +31,6 @@ async function AllBooks() {
 }
 
 async function RecoBooks() {
-  await delay(3000);
   const response = await fetch(
     `${process.env.NEXT_PUBLIC_API_BASE_URL}/book/random`,
     {

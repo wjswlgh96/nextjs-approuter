@@ -1,6 +1,5 @@
 "use server";
 
-import { delay } from "@/utils/delay";
 import { revalidateTag } from "next/cache";
 
 export async function createReviewAction(_: unknown, formData: FormData) {
@@ -13,7 +12,6 @@ export async function createReviewAction(_: unknown, formData: FormData) {
   }
 
   try {
-    await delay(2000);
     const response = await fetch(
       `${process.env.NEXT_PUBLIC_API_BASE_URL}/review`,
       {
