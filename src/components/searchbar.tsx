@@ -7,9 +7,9 @@ import styles from "./serachbar.module.css";
 export default function Searchbar() {
   const router = useRouter();
   const searchParams = useSearchParams();
-  const [search, setSearch] = useState("");
-
   const q = searchParams.get("q");
+
+  const [search, setSearch] = useState(q || "");
 
   useEffect(() => {
     setSearch(q || "");
@@ -27,7 +27,12 @@ export default function Searchbar() {
 
   return (
     <form className={styles.container} onSubmit={onSubmit}>
-      <input value={search} onChange={onChangeSearch} />
+      <input
+        type="text"
+        name="searchBar"
+        value={search}
+        onChange={onChangeSearch}
+      />
       <button>검색</button>
     </form>
   );
