@@ -1,6 +1,8 @@
 import BookItem from "@/components/book-item";
-import style from "./page.module.css";
+import styles from "./page.module.css";
 import { BookData } from "@/types";
+import { delay } from "@/utils/delay";
+import { Suspense } from "react";
 
 // export const dynamic = "";
 // 특정 페이지의 유형을 강제로 Static, Dynamic 페이지로 설정함
@@ -10,6 +12,7 @@ import { BookData } from "@/types";
 // 4. error
 
 async function AllBooks() {
+  await delay(1500);
   const response = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/book`, {
     cache: "force-cache",
   });
@@ -28,6 +31,7 @@ async function AllBooks() {
 }
 
 async function RecoBooks() {
+  await delay(3000);
   const response = await fetch(
     `${process.env.NEXT_PUBLIC_API_BASE_URL}/book/random`,
     {
@@ -49,16 +53,22 @@ async function RecoBooks() {
   );
 }
 
-export default async function Home() {
+export const dynamic = "force-dynamic";
+
+export default function Home() {
   return (
-    <div className={style.container}>
+    <div className={styles.container}>
       <section>
         <h3>지금 추천하는 도서</h3>
-        <RecoBooks />
+        <Suspense fallback={<div>도서를 불러오는 중입니다...</div>}>
+          <RecoBooks />
+        </Suspense>
       </section>
       <section>
         <h3>등록된 모든 도서</h3>
-        <AllBooks />
+        <Suspense fallback={<div>도서를 불러오는 중입니다...</div>}>
+          <AllBooks />
+        </Suspense>
       </section>
     </div>
   );
