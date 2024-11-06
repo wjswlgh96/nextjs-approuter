@@ -3,6 +3,7 @@ import styles from "./page.module.css";
 import { ReviewData } from "@/types";
 import Reviewitem from "@/components/review-item";
 import { ReviewEditor } from "@/components/review-editor";
+import Image from "next/image";
 
 // export const dynamicParams = false;
 export function generateStaticParams() {
@@ -32,7 +33,15 @@ async function BookDetail({ bookId }: { bookId: string }) {
           backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('${coverImgUrl}')`,
         }}
       >
-        <img src={coverImgUrl} />
+        <Image
+          src={coverImgUrl}
+          width={0}
+          height={0}
+          sizes="100vw"
+          style={{ width: "240px", height: "auto" }}
+          alt={`도서 ${title}의 표지 이미지`}
+          priority
+        />
       </div>
       <div className={styles.title}>{title}</div>
       <div className={styles.subTitle}>{subTitle}</div>
