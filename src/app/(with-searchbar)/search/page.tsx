@@ -30,7 +30,6 @@ export async function generateMetadata({
 }: {
   searchParams: Promise<{ q?: string }>;
 }): Promise<Metadata> {
-  // 현재 페이지 메타데이타를 동적으로 생성하는 역할
   const { q } = await searchParams;
   return {
     title: `${q} : 한입북스`,
