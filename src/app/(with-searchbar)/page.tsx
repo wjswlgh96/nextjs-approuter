@@ -1,9 +1,6 @@
 import BookItem from "@/components/book-item";
 import styles from "./page.module.css";
 import { BookData } from "@/types";
-import { Suspense } from "react";
-
-import BookListSkeleton from "@/components/skeleton/book-list-skeletion";
 import { Metadata } from "next";
 
 // export const dynamic = "";
@@ -53,8 +50,6 @@ async function RecoBooks() {
   );
 }
 
-export const dynamic = "force-dynamic";
-
 export const metadata: Metadata = {
   title: "한입 북스",
   description: "한입 북스에 등록된 도서를 만나보세요",
@@ -70,15 +65,11 @@ export default function Home() {
     <div className={styles.container}>
       <section>
         <h3>지금 추천하는 도서</h3>
-        <Suspense fallback={<BookListSkeleton count={3} />}>
-          <RecoBooks />
-        </Suspense>
+        <RecoBooks />
       </section>
       <section>
         <h3>등록된 모든 도서</h3>
-        <Suspense fallback={<BookListSkeleton count={10} />}>
-          <AllBooks />
-        </Suspense>
+        <AllBooks />
       </section>
     </div>
   );
